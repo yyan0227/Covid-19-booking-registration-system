@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Getting Started: Serving Web Content</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/sockjs-client/sockjs.min.js"></script>
+    <script src="/webjars/stomp-websocket/stomp.min.js"></script>
+    <script>
+        let jwt = "[[${jwt == null ? null : jwt.JWT}]]";
+      </script>
+    <script src="/app.js"></script>
+    <script src="/user.js"></script>
+    <script src="/service_worker.js"></script>
+    <script srs="/admin.js"></script>
+</head>
+
+<body>
+
+<div>
+    <header class="p-3 bg-dark text-white">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+                    <li><a href="/" class="nav-link px-2 text-secondary">Covid Test Registration System</a></li>
+                </ul>
+
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
+                    <svg class="bi me-2" width="40" height="32"></svg>
+                    <span class="h3" th:text="${name}"/>
+                </a>
+
+                <div class="text-end">
+                    <button id="logoutBtn" type="button" class="btn btn-outline-light me-2">Logout</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    <p></p>
+    <p></p>
+    <div class = "container">
+        <div class = "row">
+            <div class ="col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <p></p>
+                <h1 class="h3 text-center text-success">Edit Booking </h1>
+                <div class = "card-body">
+                    <form th:action="@{/user/{id} (id=${bookingMsg.bookingID})}" th:object = "${bookingMsg}" method="POST">
+
+                        <div class ="mb-3 form-check">
+                            <label> Enter Booking ID: </label>
+                            <input
+                                    type = "text"
+                                    name = "testSiteID"
+                                    th:field = "*{bookingID}"
+                                    class = "form-control"
+                            />
+                        </div>
+                        <p></p>
+
+
+                        <div class ="mb-3 form-check">
+                            <label> Enter Test Site ID: </label>
+                            <input
+                                    type = "text"
+                                    name = "testSiteID"
+                                    th:field = "*{testSiteID}"
+                                    class = "form-control"
+                            />
+                        </div>
+                        <p></p>
+                        <div class ="mb-3 form-check">
+                            <label> Enter Date/Time </label>
+                            <input
+                                    type = "datetime-local"
+                                    name = "testDateTime"
+                                    th:field = "*{testDateTime}"
+                                    class = "form-control"
+                            />
+
+                            <p></p>
+                            <button type="submit" class = "btn btn-primary">
+                                Confirm
+                            </button>
+
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+</div>
+
+
+
+
+
+
+<!-- make some space at the bottom of the UI (web browser) -->
+<div class="container"></div>
+<div class="container"></div>
+</body>
+</html>
